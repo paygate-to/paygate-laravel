@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1 - 2026-11-06
+
+- Requires paygate-php 1.1 or later, so `PayGate::card()->providers()` works: with paygate-php 1.0.0 it failed with "HTTP 301". Each provider now also has `getFees()`.
+- README: the provider example uses `stripe`.
+
 ## 1.0.0 - 2026-10-14
 
 - First release: `PayGate` facade and injectable `PayGate\Client`, configured from `.env`.

@@ -76,7 +76,7 @@ return redirect()->away(
 );
 ```
 
-`paymentUrl()` opens PayGate.to's hosted page, which shows every provider that works for the customer's country, amount and currency. Pass a provider id as the fifth argument (for example `'wert'`) to send the customer straight to one provider; `PayGate::card()->providers()` lists them.
+`paymentUrl()` opens PayGate.to's hosted page, which shows every provider that works for the customer's country, amount and currency. Pass a provider id as the fifth argument (for example `'stripe'`) to send the customer straight to one provider; `PayGate::card()->providers()` lists them.
 
 ## Crypto on the hosted page
 

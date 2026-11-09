@@ -110,6 +110,7 @@ The parsed payment data is then in `$request->attributes->get('paygate')`:
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PayGate\Crypto\Coin;
+use PayGate\Laravel\Facades\PayGate;
 
 final class PayGateCallbackController
 {

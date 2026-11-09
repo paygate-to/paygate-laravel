@@ -48,6 +48,7 @@ abstract class TestCase extends BaseTestCase
                     return response()->json(['order' => $data->get('order'), 'value' => $data->getValueCoin(), 'coin' => $data->getCoin()]);
                 })->name('paygate.callback')->middleware('paygate.callback:order');
                 Route::get('/paygate/signature-only', fn () => response('ok'))->name('paygate.plain')->middleware('paygate.callback');
+                Route::get('/', fn () => response('ok'))->name('paygate.root')->middleware('paygate.callback');
             })
             ->withMiddleware(function () {
             })
@@ -79,9 +80,10 @@ abstract class TestCase extends BaseTestCase
     {
         $parts = parse_url($url);
         $raw = $parts['query'] ?? '';
-        $request = Request::create($parts['scheme'] . '://' . $parts['host'] . (isset($parts['port']) ? ':' . $parts['port'] : '') . $parts['path'], 'GET');
+        $path = $parts['path'] ?? '/'; // an HTTP client requests "/" for a URL without a path
+        $request = Request::create($parts['scheme'] . '://' . $parts['host'] . (isset($parts['port']) ? ':' . $parts['port'] : '') . $path, 'GET');
         $request->server->set('QUERY_STRING', $raw);
-        $request->server->set('REQUEST_URI', $parts['path'] . ($raw !== '' ? '?' . $raw : ''));
+        $request->server->set('REQUEST_URI', $path . ($raw !== '' ? '?' . $raw : ''));
         parse_str($raw, $query);
         $request->query->replace($query);
         foreach ($headers as $name => $value) {

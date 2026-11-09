@@ -78,4 +78,23 @@ final class CallbackMiddlewareTest extends TestCase
         $this->assertSame(200, $this->sendCallback($url, ['X-PayGate-Signature' => self::sign($url), 'X-PayGate-Key-Id' => 'test'])->getStatusCode());
         $this->assertSame(403, $this->sendCallback($url, ['X-PayGate-Signature' => self::sign($url . '&x=1'), 'X-PayGate-Key-Id' => 'test'])->getStatusCode());
     }
+
+    public function test_callback_registered_with_a_trailing_slash_is_accepted(): void
+    {
+        $url = self::paygateUrl(self::APP_URL . '/paygate/signature-only/?order=A1001');
+
+        $this->assertSame(200, $this->sendCallback($url, ['X-PayGate-Signature' => self::sign($url), 'X-PayGate-Key-Id' => 'test'])->getStatusCode());
+        $without = str_replace('/signature-only/?', '/signature-only?', $url);
+        $this->assertSame(403, $this->sendCallback($url, ['X-PayGate-Signature' => self::sign($without), 'X-PayGate-Key-Id' => 'test'])->getStatusCode());
+    }
+
+    public function test_callback_registered_on_the_bare_host_is_accepted(): void
+    {
+        foreach ([self::APP_URL . '?order=A1001', self::APP_URL . '/?order=A1001'] as $registered) {
+            $url = self::paygateUrl($registered);
+
+            $this->assertSame(200, $this->sendCallback($url, ['X-PayGate-Signature' => self::sign($url), 'X-PayGate-Key-Id' => 'test'])->getStatusCode(), $registered);
+            $this->assertSame(403, $this->sendCallback($url . '&x=1', ['X-PayGate-Signature' => self::sign($url), 'X-PayGate-Key-Id' => 'test'])->getStatusCode(), $registered);
+        }
+    }
 }

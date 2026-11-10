@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2 - 2026-11-10
+
+- Laravel 13 support: `composer require paygate-to/paygate-laravel` failed on Laravel 13.
+- The `paygate.callback` middleware accepts callbacks registered with a trailing slash (`.../callback/?order=1`) or on the bare host (`https://shop.example8585859.com?order=1`): they failed with `signature_mismatch`.
+- README: the callback controller example imports the `PayGate` facade.
+
 ## 1.0.1 - 2026-11-06
 
 - Requires paygate-php 1.1 or later, so `PayGate::card()->providers()` works: with paygate-php 1.0.0 it failed with "HTTP 301". Each provider now also has `getFees()`.

@@ -25,7 +25,7 @@ This package wires the [PayGate.to PHP SDK](https://github.com/paygate-to/paygat
 ## Requirements
 
 - PHP 8.1 or newer with the OpenSSL extension.
-- Laravel 10, 11 or 12. Tested on Laravel 12.
+- Laravel 10, 11, 12 or 13. Tested on Laravel 12 and 13.
 - Your app reachable at its public https address, set as `APP_URL`. Callbacks are checked against it.
 
 ## Install

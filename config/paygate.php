@@ -28,6 +28,7 @@ return [
         'xmr' => env('PAYGATE_XMR_WALLET'),
         'zec' => env('PAYGATE_ZEC_WALLET'),
         'ton' => env('PAYGATE_TON_WALLET'),
+        'xrp' => env('PAYGATE_XRP_WALLET'), // XRP Ledger: r..., r...?dt=TAG or an X-address
     ],
 
     /*

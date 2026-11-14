@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0 - 2026-11-14
+
+- Native XRP on the XRP Ledger: set `PAYGATE_XRP_WALLET` (`r…`, `r…?dt=TAG` with a destination tag, or an X-address) and the hosted multi-coin page offers XRP. Requires paygate-php 1.2 or later. If you published `config/paygate.php`, add `'xrp' => env('PAYGATE_XRP_WALLET'),` to its `wallets`.
+- `$data->getPayoutFor()` matches an XRP payout when your wallet is an X-address (paygate-php 1.2).
+
 ## 1.0.2 - 2026-11-10
 
 - Laravel 13 support: `composer require paygate-to/paygate-laravel` failed on Laravel 13.

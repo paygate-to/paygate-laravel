@@ -46,6 +46,7 @@ PAYGATE_BTC_WALLET=bc1qYourBitcoinWallet
 PAYGATE_SOLANA_WALLET=YourSolanaWallet
 # PAYGATE_LTC_WALLET, PAYGATE_TRC20_WALLET, PAYGATE_BCH_WALLET, PAYGATE_DOGE_WALLET,
 # PAYGATE_XMR_WALLET, PAYGATE_ZEC_WALLET, PAYGATE_TON_WALLET
+# PAYGATE_XRP_WALLET: XRP Ledger, as r..., r...?dt=TAG with a destination tag, or an X-address
 ```
 
 Use self-custodial wallets you control. Never use exchange deposit addresses.
@@ -170,7 +171,7 @@ Callback routes are GET requests, so Laravel's CSRF protection does not apply to
 |---|---|---|---|
 | `api_domain` | `PAYGATE_API_DOMAIN` | `api.paygate.to` | Your free dedicated API endpoint ([guide](https://paygate.to/white-label-api-custom-domain-guide/)). |
 | `checkout_domain` | `PAYGATE_CHECKOUT_DOMAIN` | `checkout.paygate.to` | Your white-label checkout domain. |
-| `wallets.*` | `PAYGATE_*_WALLET` | empty | Payout wallets: `usdc_polygon` for cards, one per network for crypto. |
+| `wallets.*` | `PAYGATE_*_WALLET` | empty | Payout wallets: `usdc_polygon` for cards, one per network for crypto. If you published the config before XRP support, add `'xrp' => env('PAYGATE_XRP_WALLET'),` to `wallets`. |
 | `callback_secret` | `PAYGATE_CALLBACK_SECRET` | derived from `APP_KEY` | Secret for order tokens. Changing it (or `APP_KEY`) invalidates callback URLs of unpaid orders. |
 | `public_keys` | – | `[]` | Extra PayGate.to public keys, see below. |
 | `timeout` | `PAYGATE_TIMEOUT` | `30` | API timeout in seconds. |
